@@ -13,7 +13,6 @@ createconf is a command-line tool that generates configuration files from templa
   - [Advanced Usage](#advanced-usage)
   - [Customizing Templates](#customizing-templates)
   - [Ordering in createconf](#ordering-in-createconf)
-  - [Testing](#testing)
 
 
 ## Installation
@@ -224,12 +223,3 @@ The order of the rendered output depends on the structure of your Mako templates
 When using the `--defaults` option to merge default data with custom data, createconf performs a deep merge of the dictionaries. The order in which keys and values are merged depends on the order of the input data. Custom data takes precedence over default data, so if a key exists in both default and custom data, the custom data's value will be used.
 
 In summary, when working with createconf, be mindful of ordering requirements for your specific use case, and structure your input data and templates accordingly to ensure the proper order is maintained in the generated configuration files.
-
-
-## Testing
-
-Unit tests are located in ./tests
-
-To run the tests, use the following command:
-
-`py -m unittest discover tests`
