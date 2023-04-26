@@ -1,35 +1,19 @@
-image: python:latest
-
 stages:
-  - install_dependencies
-  - lint
-  - unit
+  - build
 
-cache:
-  paths:
-    - venv/
+variables:
+  PYTHONPATH: $CI_PROJECT_DIR
 
-install_dependencies:
-  stage: install_dependencies
+lint_and_test:
+  stage: build
+  image: python:3.8
   script:
-    - python -V
-    - python -m venv venv
-    - source venv/bin/activate
     - pip install --upgrade pip
-    - pip install -r requirements.txt
-  artifacts:
-    paths:
-      - venv/
-
-lint:
-  stage: lint
-  script:
-    - source venv/bin/activate
-    - pylint $(git ls-files '*.py') 
-
-unit:
-  stage: unit
-  script:
-    - source venv/bin/activate
-    - py -m unittest discover tests
-
+    - pip install pylint pytest
+    - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - pylint --output-format=text --fail-under=9 --jobs=0 $(git ls-files '*.py')
+    - pytest
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+      when: always
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
