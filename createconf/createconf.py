@@ -144,10 +144,5 @@ def createconf(args):
     else:
         print(output)
 
-def createconf_cli():
-    """cli"""
-    cli_options = parse_args()
-    createconf(cli_options)
-
 if __name__ == '__main__':
-    createconf_cli()
+    createconf(parse_args())
