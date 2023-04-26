@@ -31,7 +31,7 @@ jobs:
 
     - name: Lint
       run: |
-        pylint --output-format=text --fail-under=9 --jobs=0 --rcfile=.pylintrc $(git ls-files '*.py')
+        pylint --output-format=text --fail-under=9 --jobs=0 $(git ls-files '*.py')
 
     - name: Unit tests
       run: |
