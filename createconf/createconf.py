@@ -114,7 +114,7 @@ def filter_data(data: dict, ignore: list, verbose: bool) -> dict:
                 print(f"WARN: Trying to ignore '{i}' - but key not found in template.")
     return data
 
-def main(args):
+def createconf(args):
     """Generate a configuration file from a template and JSON data."""
     data = load_data(args.data, args.ignore_duplicate_keys)
 
@@ -147,7 +147,7 @@ def main(args):
 def createconf_cli():
     """cli"""
     cli_options = parse_args()
-    main(cli_options)
+    createconf(cli_options)
 
 if __name__ == '__main__':
     createconf_cli()

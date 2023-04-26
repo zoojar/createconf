@@ -2,7 +2,7 @@
 import tempfile
 import os
 import argparse
-from createconf.createconf import main
+from createconf.createconf import createconf
 
 class TestMain:
     # pylint: disable=too-few-public-methods
@@ -41,7 +41,7 @@ class TestMain:
             )
 
             try:
-                main(args)
+                createconf(args)
                 with open(outfile_name, "r", encoding='utf-8') as ofile:
                     output = ofile.read()
                 # Perform assertions
