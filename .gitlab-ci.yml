@@ -1,0 +1,35 @@
+image: python:latest
+
+stages:
+  - install_dependencies
+  - lint
+  - unit
+
+cache:
+  paths:
+    - venv/
+
+install_dependencies:
+  stage: install_dependencies
+  script:
+    - python -V
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+  artifacts:
+    paths:
+      - venv/
+
+lint:
+  stage: lint
+  script:
+    - source venv/bin/activate
+    - pylint $(git ls-files '*.py') 
+
+unit:
+  stage: unit
+  script:
+    - source venv/bin/activate
+    - py -m unittest discover tests
+

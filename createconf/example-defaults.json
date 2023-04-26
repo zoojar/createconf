@@ -1,0 +1,27 @@
+{
+    "hostname": "default-hostname",
+    "boot": "nxos bootflash:/nxos.9.3.3.bin",
+    "cfs": "eth distribute",
+    "clock timezone": "UTC 0 0",
+    "ip domain-lookup": [],
+    "system jumbomtu": "9000",
+    "feature hsrp": "",
+    "feature interface-vlan": "",
+    "feature lacp": "",
+    "feature lldp": "",
+    "feature nxapi": "",
+    "feature vpc": "",
+    "interface Ethernet1/1": { 
+        "description": "VPC-Peer",
+        "switchport": "",
+        "switchport mode": "trunk",
+        "switchport trunk allowed vlan": ["10","20","30-33","50"]
+     },
+     "interface vlan111": {
+        "ip address": "172.16.111.4/24",
+        "hsrp 111": {
+            "priority": "90",
+            "ip": "172.16.111.1"
+        }
+    }
+}

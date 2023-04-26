@@ -1,0 +1,81 @@
+{
+    "boot": "nxos bootflash:/nxos.9.3.3.bin",
+    "username admin": [ "password","123", "role", "network-admin"],
+    "hostname": "ovc-vn9k-01",
+    "cfs eth": "distribute",
+    "clock timezone": "UTC 0 0",
+    "ip domain-lookup": "",
+    "system jumbomtu": "9000",
+    "interface Ethernet1/1": {
+        "switchport trunk allowed vlan": ["all"]
+    },
+    "interface Ethernet1/2": {
+        "description": "VPC-Peer",
+        "switchport":"",
+        "switchport mode": "trunk",
+        "switchport trunk allowed vlan": ["all"],
+        "spanning-tree port type": "network",
+        "vpc": "peer-link"
+    },
+    "interface Ethernet1/47": {
+        "description": "OVC-N9K-01_1/47",
+        "switchport": "",
+        "switchport mode": "trunk",
+        "channel-group 50 mode": "active",
+        "no": "shutdown"
+    },
+    "interface Ethernet1/48": {
+        "description": "OVC-N9K-01_1/48",
+        "switchport":"",
+        "switchport mode": "trunk",
+        "channel-group 50 mode": "active",
+        "no": "shutdown"
+    },
+    "interface mgmt0": {
+        "vrf member": "management",
+        "ip address": "192.168.1.18/24"
+    },
+    "interface port-channel50": {
+        "description": "VPC-Peer",
+        "switchport": "",
+        "switchport mode": "trunk",
+        "switchport trunk allowed vlan": ["all"],
+        "spanning-tree port type": "network",
+        "vpc": "peer-link"
+    },
+    "interface vlan111": {
+        "ip address": "172.16.111.4/24",
+        "hsrp 111": {
+            "priority": "90",
+            "ip": "172.16.111.1"
+        }
+    },
+    "interface vlan112": {
+        "ip address": "172.16.112.4/24",
+        "hsrp 112": {
+            "priority": "112",
+            "ip": "172.16.112.1"
+        }
+    },
+    "vcp domain 50": {
+        "priority": "10",
+        "peer_keepalive_destination": "192.168.200.112",
+        "peer_keepalive_source": "192.168.200.111",
+        "delay_restore": "150",
+        "graceful": "consistency-check",
+        "auto-recovery": ""
+    },
+    "vlan 1": {
+        "name": "Cluster1"
+    },
+    "vlan 52":{
+        "name": "Cluster2"
+    },
+    "vlan 53": {
+        "name": "Cluster3"
+    },
+    "vrf context management": {
+        "ip name-server": "8.8.8.8",
+        "ip route": "0.0.0.0/0 10.22.148.1"
+    }
+}
