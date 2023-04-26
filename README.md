@@ -1,5 +1,7 @@
 # createconf
 
+[![Python CI](https://github.com/zoojar/createconf/actions/workflows/python-ci.yml/badge.svg)](https://github.com/zoojar/createconf/actions/workflows/python-ci.yml)
+
 createconf is a command-line tool that generates configuration files from templates and data. It uses Mako templates to create the desired output, which can then be applied to various devices or services.
 
 ## Table of contents
@@ -7,21 +9,10 @@ createconf is a command-line tool that generates configuration files from templa
   - [Table of contents](#table-of-contents)
   - [Installation](#installation)
   - [Basic Usage](#basic-usage)
-    - [Options](#options)
-    - [Examples](#examples)
-    - [Data, templating and Cisco commands](#data-templating-and-cisco-commands)
-    - [How data types are parsed with cisco\_conf.mako](#how-data-types-are-parsed-with-cisco_confmako)
-      - [Strings ""](#strings-)
-      - [Lists \[\]](#lists-)
-      - [Maps {}](#maps-)
   - [Troubleshooting](#troubleshooting)
   - [Advanced Usage](#advanced-usage)
-    - [Merging Default and Custom Data](#merging-default-and-custom-data)
-    - [Filtering Unwanted Keys](#filtering-unwanted-keys)
-    - [Duplicate Key Handling](#duplicate-key-handling)
   - [Customizing Templates](#customizing-templates)
   - [Ordering in createconf](#ordering-in-createconf)
-    - [Merging Default and Custom Data](#merging-default-and-custom-data-1)
   - [Testing](#testing)
 
 
